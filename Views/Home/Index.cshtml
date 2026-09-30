@@ -1,0 +1,414 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<style>
+    :root {
+        --azul: #082f63;
+        --azul-oscuro: #041c3b;
+        --amarillo: #ffc400;
+        --blanco: #ffffff;
+        --gris: #f4f6f8;
+        --texto: #263238;
+    }
+
+    body {
+        background-color: var(--gris);
+        color: var(--texto);
+    }
+
+    /* PORTADA */
+
+    .portada {
+        min-height: 610px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0 0 32px 32px;
+        background-color: var(--azul-oscuro);
+    }
+
+        /* Foto invertida */
+        .portada::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('/images/equipo-taller.png') center center / cover no-repeat;
+            transform: scaleX(-1);
+            z-index: 0;
+        }
+
+        /* Capa azul sobre la foto */
+        .portada::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient( 90deg, rgba(4, 28, 59, 0.97) 0%, rgba(8, 47, 99, 0.88) 48%, rgba(4, 28, 59, 0.25) 100% );
+            z-index: 1;
+        }
+
+    .contenido-portada {
+        max-width: 750px;
+        padding: 80px 55px;
+        color: white;
+        position: relative;
+        z-index: 2;
+    }
+
+    .etiqueta {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 18px;
+        border-radius: 30px;
+        background-color: var(--amarillo);
+        color: var(--azul-oscuro);
+        font-size: 0.85rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .contenido-portada h1 {
+        margin-bottom: 24px;
+        font-size: clamp(2.6rem, 5vw, 4.8rem);
+        font-weight: 900;
+        line-height: 1;
+    }
+
+        .contenido-portada h1 span {
+            display: block;
+            color: var(--amarillo);
+        }
+
+    .contenido-portada p {
+        max-width: 680px;
+        margin-bottom: 32px;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 1.15rem;
+        line-height: 1.75;
+    }
+
+    .boton-principal {
+        display: inline-block;
+        padding: 15px 28px;
+        border-radius: 8px;
+        background-color: var(--amarillo);
+        color: var(--azul-oscuro);
+        font-weight: 900;
+        text-decoration: none;
+        transition: 0.25s;
+    }
+
+        .boton-principal:hover {
+            background-color: white;
+            color: var(--azul);
+            transform: translateY(-2px);
+        }
+
+    .boton-secundario {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 13px 28px;
+        border: 2px solid white;
+        border-radius: 8px;
+        color: white;
+        font-weight: 800;
+        text-decoration: none;
+        transition: 0.25s;
+    }
+
+        .boton-secundario:hover {
+            background-color: white;
+            color: var(--azul);
+        }
+
+    /* SECCIONES */
+
+    .seccion {
+        padding: 75px 20px;
+    }
+
+    .titulo-seccion {
+        margin-bottom: 12px;
+        color: var(--azul);
+        font-size: 2.3rem;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    .subtitulo-seccion {
+        max-width: 750px;
+        margin: 0 auto 42px;
+        color: #667085;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        text-align: center;
+    }
+
+    /* NOSOTROS */
+
+    .nosotros {
+        padding: 48px;
+        border-left: 7px solid var(--amarillo);
+        border-radius: 20px;
+        background-color: white;
+        box-shadow: 0 14px 35px rgba(8, 47, 99, 0.10);
+    }
+
+        .nosotros h2 {
+            margin-bottom: 20px;
+            color: var(--azul);
+            font-weight: 900;
+        }
+
+        .nosotros p {
+            margin-bottom: 14px;
+            color: #475467;
+            font-size: 1.08rem;
+            line-height: 1.8;
+        }
+
+    /* SERVICIOS */
+
+    .tarjeta-servicio {
+        height: 100%;
+        padding: 32px 25px;
+        border-bottom: 5px solid var(--amarillo);
+        border-radius: 18px;
+        background-color: white;
+        text-align: center;
+        box-shadow: 0 10px 28px rgba(16, 24, 40, 0.08);
+        transition: 0.25s;
+    }
+
+        .tarjeta-servicio:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 38px rgba(8, 47, 99, 0.16);
+        }
+
+    .numero-servicio {
+        width: 58px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background-color: var(--amarillo);
+        color: var(--azul-oscuro);
+        font-size: 1.3rem;
+        font-weight: 900;
+    }
+
+    .tarjeta-servicio h3 {
+        margin-bottom: 14px;
+        color: var(--azul);
+        font-size: 1.25rem;
+        font-weight: 900;
+    }
+
+    .tarjeta-servicio p {
+        margin: 0;
+        color: #667085;
+        line-height: 1.65;
+    }
+
+    /* TURNO FINAL */
+
+    .turno-final {
+        padding: 50px 30px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+        color: white;
+        text-align: center;
+    }
+
+        .turno-final h2 {
+            margin-bottom: 14px;
+            font-size: 2.1rem;
+            font-weight: 900;
+        }
+
+        .turno-final p {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+        }
+
+    @@media (max-width: 768px) {
+        .portada {
+            min-height: 690px;
+            background-position: center;
+        }
+
+        .contenido-portada {
+            padding: 60px 25px;
+        }
+
+            .contenido-portada h1 {
+                font-size: 2.7rem;
+            }
+
+        .boton-secundario {
+            margin-top: 12px;
+            margin-left: 0;
+        }
+
+        .nosotros {
+            padding: 32px 25px;
+        }
+
+        .seccion {
+            padding: 55px 15px;
+        }
+    }
+</style>
+
+<!-- PORTADA -->
+<section class="portada">
+    <div class="contenido-portada">
+
+        <div class="etiqueta">
+            Taller familiar
+        </div>
+
+        <h1>
+            Bienvenidos a
+            <span>Taller Mecánico Servidio</span>
+        </h1>
+
+        <p>
+            Somos Gabriel y Leandro, padre e hijo, y trabajamos junto a un gran
+            equipo para brindar soluciones confiables para tu auto, camioneta
+            o vehículo de trabajo.
+        </p>
+
+        <a asp-controller="Turnos"
+           asp-action="Crear"
+           class="boton-principal">
+            Reservar un turno
+        </a>
+
+        <a href="#servicios"
+           class="boton-secundario">
+            Ver servicios
+        </a>
+
+    </div>
+</section>
+
+<!-- PRESENTACIÓN -->
+<section class="seccion">
+    <div class="container">
+
+        <div class="nosotros">
+            <h2>Experiencia, confianza y atención familiar</h2>
+
+            <p>
+                En Taller Servidio nos ocupamos de cada vehículo con
+                responsabilidad, dedicación y atención personalizada.
+            </p>
+
+            <p>
+                Realizamos mantenimiento y reparación de autos, camionetas
+                y vehículos de trabajo, buscando siempre la mejor solución
+                para que puedas volver a circular con tranquilidad.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="seccion pt-0">
+    <div class="container">
+
+        <h2 class="titulo-seccion">
+            Nuestros servicios
+        </h2>
+
+        <p class="subtitulo-seccion">
+            Taller mecánico y lubricentro en un mismo lugar, con atención
+            profesional, asesoramiento personalizado y productos de calidad.
+        </p>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="tarjeta-servicio">
+                    <div class="numero-servicio">01</div>
+
+                    <h3>Mecánica general</h3>
+
+                    <p>
+                        Revisión, diagnóstico, mantenimiento y reparación
+                        para autos y camionetas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="tarjeta-servicio">
+                    <div class="numero-servicio">02</div>
+
+                    <h3>Cambio de aceite</h3>
+
+                    <p>
+                        Cambio de aceite y filtros para mantener el motor
+                        protegido y funcionando correctamente.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="tarjeta-servicio">
+                    <div class="numero-servicio">03</div>
+
+                    <h3>Venta de filtros</h3>
+
+                    <p>
+                        Filtros de aceite, aire, combustible y habitáculo
+                        para diferentes marcas y modelos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="tarjeta-servicio">
+                    <div class="numero-servicio">04</div>
+
+                    <h3>Aceites y lubricantes</h3>
+
+                    <p>
+                        Venta y asesoramiento para elegir los productos
+                        adecuados para cada vehículo.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TURNOS -->
+<section class="seccion pt-0">
+    <div class="container">
+
+        <div class="turno-final">
+            <h2>¿Tu vehículo necesita atención?</h2>
+
+            <p>
+                Atendemos de lunes a viernes, de 8:30 a 19:00.
+                Trabajamos con turnos programados para ofrecer una mejor atención.
+            </p>
+
+            <a asp-controller="Turnos"
+               asp-action="Crear"
+               class="boton-principal">
+                Solicitar un turno
+            </a>
+        </div>
+
+    </div>
+</section>
